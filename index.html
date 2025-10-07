@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHPS - Suggestions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- AUTH SECTION -->
+    <div id="authSection" class="section active">
+        <div class="auth-container">
+            <h1 class="app-title">NHPS - Suggestions</h1>
+            <p class="app-subtitle">Vote for your favorite teachers!</p>
+            
+            <div class="auth-card">
+                <!-- Sign Up Form -->
+                <div id="signupForm" class="auth-form">
+                    <h2>Create Account</h2>
+                    <input type="text" id="signupName" placeholder="Full Name" required>
+                    <input type="email" id="signupEmail" placeholder="Email" required>
+                    <input type="password" id="signupPassword" placeholder="Password" required>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
+                    <button id="signupBtn" class="btn-primary">Sign Up</button>
+                    <button id="googleSignupBtn" class="btn-google">
+                        <span>Continue with Google</span>
+                    </button>
+                    <p class="switch-text">Already have an account? <a href="#" id="showLogin">Login</a></p>
+                </div>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="auth-form hidden">
+                    <h2>Welcome Back</h2>
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                    <button id="loginBtn" class="btn-primary">Login</button>
+                    <button id="googleLoginBtn" class="btn-google">
+                        <span>Continue with Google</span>
+                    </button>
+                    <p class="switch-text">Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP SECTION -->
+    <div id="mainSection" class="section">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <button id="menuToggle" class="menu-btn">☰</button>
+            <h1 class="nav-title">NHPS - Suggestions</h1>
+            <div id="userAvatar" class="user-avatar"></div>
+        </nav>
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2>Menu</h2>
+                <button id="closeSidebar" class="close-btn">✕</button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" data-page="home">🏠 Home</a></li>
+                <li><a href="#" data-page="rankings">🏆 Rankings</a></li>
+                <li><a href="#" data-page="comments">💬 Comments</a></li>
+                <li><a href="#" data-page="profile">👤 Profile</a></li>
+                <li><a href="#" data-page="admin">🔐 Admin Panel</a></li>
+                <li><a href="#" data-page="privacy">📄 Privacy Policy</a></li>
+                <li><a href="#" id="sidebarLogout">🚪 Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- HOME PAGE (Voting) -->
+        <div id="homePage" class="page active">
+            <div class="voting-container">
+                <h2 class="page-title">Choose Your Favorite Teacher</h2>
+                <div class="voting-area">
+                    <div id="teacher1Card" class="teacher-card">
+                        <img id="teacher1Img" src="" alt="Teacher 1">
+                        <h3 id="teacher1Name"></h3>
+                        <p id="teacher1Subject"></p>
+                    </div>
+                    <div class="or-text">OR</div>
+                    <div id="teacher2Card" class="teacher-card">
+                        <img id="teacher2Img" src="" alt="Teacher 2">
+                        <h3 id="teacher2Name"></h3>
+                        <p id="teacher2Subject"></p>
+                    </div>
+                </div>
+                <p id="selectionText" class="selection-text"></p>
+                <button id="submitVoteBtn" class="btn-primary" disabled>Submit & Next</button>
+            </div>
+        </div>
+
+        <!-- RANKINGS PAGE -->
+        <div id="rankingsPage" class="page">
+            <div class="container">
+                <h2 class="page-title">Top Teachers 🏆</h2>
+                <p id="totalVotesText" class="total-votes"></p>
+                <div id="rankingsList" class="rankings-list"></div>
+            </div>
+        </div>
+
+        <!-- COMMENTS PAGE -->
+        <div id="commentsPage" class="page">
+            <div class="container">
+                <h2 class="page-title">Student Comments 💬</h2>
+                <div class="comment-form">
+                    <textarea id="commentText" placeholder="Write your comment..." rows="4"></textarea>
+                    <button id="postCommentBtn" class="btn-primary">Post Comment</button>
+                </div>
+                <div id="commentsList" class="comments-list"></div>
+            </div>
+        </div>
+
+        <!-- PROFILE PAGE -->
+        <div id="profilePage" class="page">
+            <div class="container">
+                <h2 class="page-title">My Profile</h2>
+                <div class="profile-card">
+                    <div id="profileAvatar" class="profile-avatar"></div>
+                    <h3 id="profileName"></h3>
+                    <p id="profileEmail"></p>
+                    <p id="profileVotes"></p>
+                    <button id="logoutBtn" class="btn-danger">Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADMIN PANEL -->
+        <div id="adminPage" class="page">
+            <div class="container">
+                <h2 class="page-title">Admin Panel 🔐</h2>
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="users">Users</button>
+                    <button class="tab-btn" data-tab="teachers">Teachers</button>
+                </div>
+
+                <!-- Users Tab -->
+                <div id="usersTab" class="tab-content active">
+                    <h3>All Users</h3>
+                    <div id="usersList" class="users-list"></div>
+                </div>
+
+                <!-- Teachers Tab -->
+                <div id="teachersTab" class="tab-content">
+                    <h3>Manage Teachers</h3>
+                    <div class="teacher-form">
+                        <input type="text" id="teacherName" placeholder="Teacher Name" required>
+                        <input type="text" id="teacherSubject" placeholder="Subject" required>
+                        <div class="photo-upload-section">
+                            <label for="teacherPhotoFile" class="photo-upload-label">
+                                📷 Upload Photo (Max 500KB)
+                            </label>
+                            <input type="file" id="teacherPhotoFile" accept="image/*" style="display:none;">
+                            <img id="photoPreview" class="photo-preview" style="display:none;">
+                            <p id="photoStatus" class="photo-status"></p>
+                        </div>
+                        <button id="addTeacherBtn" class="btn-primary">Add Teacher</button>
+                    </div>
+                    <p id="teacherStats"></p>
+                    <div id="teachersList" class="teachers-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIVACY POLICY PAGE -->
+<div id="privacyPage" class="page">
+    <div class="container">
+        <h2 class="page-title">Privacy Policy 📄</h2>
+        <div class="privacy-content">
+            <p>Last updated: October 7, 2025</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>We collect information that you provide voluntarily, such as feedback, teacher rankings, and comments. Your ID remains anonymous, and only the admin can post your feedback.</p>
+
+            <h3>2. How We Use Your Information</h3>
+            <p>We use the information to improve the school environment and highlight student feedback. Comments and votes are posted by the admin while keeping your ID anonymous.</p>
+
+            <h3>3. Information Sharing</h3>
+            <p>We do not share personal identities with third parties. Only anonymous data may be used internally for school improvement.</p>
+
+            <h3>4. Data Security</h3>
+            <p>We implement security measures to protect your feedback and votes from unauthorized access.</p>
+
+            <h3>5. Your Rights</h3>
+            <p>You can update or delete your feedback at any time. Personal information can also be removed on request.</p>
+
+            <h3>6. Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy or the feedback system, contact us at <a href="mailto:suggestion.web07@gmail.com">suggestion.web07@gmail.com</a>.</p>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-buttons">
+                <button id="confirmLogout" class="btn-danger">Yes</button>
+                <button id="cancelLogout" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Password Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <h3>Admin Access</h3>
+            <p>Enter admin password:</p>
+            <input type="password" id="adminPassword" placeholder="Password">
+            <div class="modal-buttons">
+                <button id="confirmAdmin" class="btn-primary">Submit</button>
+                <button id="cancelAdmin" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" type="module"></script>
+</body>
+</html>
